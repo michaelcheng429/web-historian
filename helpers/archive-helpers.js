@@ -61,4 +61,3 @@ exports.downloadUrls = function(url){
     });
   });
 };
-exports.downloadUrls('www.amazon.com');

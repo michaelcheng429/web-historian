@@ -15,7 +15,17 @@ exports.serveAssets = function(res, asset, callback) {
   // (Static files are things like html (yours or archived from others...), css, or anything that doesn't change often.)
   console.log(asset);
   fs.readFile(path.join(archive.paths.siteAssets, asset), function(err, data){
-    exports.sendResponse(res, data);
+    if(err) {
+      fs.readFile(path.join(archive.paths.archivedSites, asset), function(err, data) {
+        if(err) {
+          exports.sendResponse(res, '<h1>Not Found</h1>', 404);
+        } else {
+          exports.sendResponse(res, data);
+        }
+      });
+    } else {
+      exports.sendResponse(res, data);
+    }
   });
 };
 
