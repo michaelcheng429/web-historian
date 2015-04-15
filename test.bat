@@ -1,0 +1,1 @@
+start cmd /k node ./web/basic-server.js & cd test & mocha test.js & pause

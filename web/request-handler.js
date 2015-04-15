@@ -20,7 +20,9 @@ var actions = {
     });
   },
   POST: function(req, res) {
-
+    helpers.getData(req, function(data) {
+      data = data.slice(4);
+    });
 
 
   }

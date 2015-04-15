@@ -26,5 +26,16 @@ exports.sendResponse = function(res, asset, statusCode){
   return res;
 };
 
+exports.getData = function(req, callback) {
+  var data = '';
+
+  req.on('data', function(chunk) {
+    data += chunk;
+  });
+
+  req.on('end', function() {
+    callback(data);
+  });
+};
 
 // As you progress, keep thinking about what helper functions you can put here!
