@@ -14,7 +14,6 @@ exports.headers = headers = {
 exports.serveAssets = function(res, asset, callback) {
   // Write some code here that helps serve up your static files!
   // (Static files are things like html (yours or archived from others...), css, or anything that doesn't change often.)
-  console.log(asset);
   if (asset === '/index.html') {
     exports.renderTemplate(res);
   } else {
@@ -28,6 +27,9 @@ exports.serveAssets = function(res, asset, callback) {
           }
         });
       } else {
+        if (asset.slice(-3) === 'css') {
+            headers['Content-Type'] = 'text/css';
+        }
         exports.sendResponse(res, data);
       }
     });
@@ -65,8 +67,6 @@ exports.renderTemplate = function(res) {
   archive.readListOfUrls(function(urlsArray) {
     templateContent.urls = Array.prototype.slice.call(urlsArray);
     fs.readFile(path.join(archive.paths.siteAssets, '/index.html'), function(err ,data) {
-      console.log(data.toString());
-      console.log(templateContent);
       var tpl = _.template(data.toString());
       var templatedHTML = tpl(templateContent);
       exports.sendResponse(res, templatedHTML);
