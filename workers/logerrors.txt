@@ -1,0 +1,9 @@
+Thu Apr 16 2015 12:20:27 GMT-0500 (CDT): Error: getaddrinfo ENOTFOUND www.sajdflksdf.com
+
+
+Thu Apr 16 2015 12:20:27 GMT-0500 (CDT): Error: connect ECONNREFUSED
+
+
+Thu Apr 16 2015 12:20:27 GMT-0500 (CDT): Error: socket hang up
+
+
