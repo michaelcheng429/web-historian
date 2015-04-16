@@ -2,6 +2,9 @@
 // to actually download the urls you want to download.
 var helpers = require('../helpers/archive-helpers.js');
 
+process.on('uncaughtException', function (err) {
+    console.log(err);
+});
 
 helpers.readListOfUrls(function(data) {
   data.forEach(function(url) {

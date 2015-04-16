@@ -55,11 +55,9 @@ exports.isURLArchived = function(url, callback){
 };
 
 exports.downloadUrls = function(url){
-  console.log(url);
   http.get('http://' + url, function(res){
     helpers.getData(res, function(data) {
       fs.writeFile(path.join(exports.paths.archivedSites, url), data);
     });
   });
 };
-exports.downloadUrls('www.amazon.com');
