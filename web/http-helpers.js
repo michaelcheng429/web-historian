@@ -48,4 +48,10 @@ exports.getData = function(req, callback) {
   });
 };
 
+
+exports.redirect = function(res, destination) {
+  res.writeHead(302, {location: destination});
+  res.end();
+};
+
 // As you progress, keep thinking about what helper functions you can put here!

@@ -22,6 +22,12 @@ var actions = {
   POST: function(req, res) {
     helpers.getData(req, function(data) {
       data = data.slice(4);
+      archive.isUrlInList(data, function(inList){
+        if(!inList) {
+          archive.addUrlToList(data);
+          helpers.redirect(res, '/loading.html');
+        }
+      });
     });
 
 
