@@ -10,7 +10,7 @@
   </form>
 
   <ul>
-  <% _.each(urls, function(url) { %> <li><%= url %></li> <% }); %>
+  <% _.each(urls, function(url) { %> <li><a href="/<%= url %>"><%= url %></a></li> <% }); %>
   </ul>
 </body>
 </html>
