@@ -29,7 +29,9 @@ exports.serveAssets = function(res, asset, callback) {
         });
       } else {
         if (asset.slice(-3) === 'css') {
-            headers['Content-Type'] = 'text/css';
+          headers['Content-Type'] = 'text/css';
+        } else {
+          headers['Content-Type'] = 'text/html';
         }
         exports.sendResponse(res, data);
       }
