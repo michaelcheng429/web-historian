@@ -1,6 +1,9 @@
 var http = require("http");
 var handler = require("./request-handler");
 var initialize = require("./initialize.js");
+// var htmlFetcher = require("../workers/htmlfetcher.js");
+
+// htmlFetcher.fetcher();
 
 // Why do you think we have this here?
 // HINT:It has to do with what's in .gitignore
