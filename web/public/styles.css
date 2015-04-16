@@ -1,4 +1,15 @@
 body {
+  text-align: center;
   margin : 0px;
   font-family: arial, sans-serif;
+}
+
+button {
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+li {
+  list-style-type: none;
 }

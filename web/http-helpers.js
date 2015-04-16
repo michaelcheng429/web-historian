@@ -21,6 +21,7 @@ exports.serveAssets = function(res, asset, callback) {
       if(err) {
         fs.readFile(path.join(archive.paths.archivedSites, asset), function(err, data) {
           if(err) {
+            headers['Content-Type'] = 'text/html';
             exports.sendResponse(res, '<h1>Not Found</h1>', 404);
           } else {
             exports.sendResponse(res, data);

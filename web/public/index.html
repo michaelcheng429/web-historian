@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/styles.css" />
 </head>
 <body>
-  Enter a URL here:
-  <form method="POST">
-    <input type="input" name="url"></input>
-  </form>
+  <div class="container">
+    <h1>Web Historian</h1>
+    Enter a URL here:
+    <form method="POST">
+      <input type="input" name="url" class="form-control"></input>
+      <button class="btn btn-primary">Submit</button>
+    </form>
 
-  <ul>
-  <% _.each(urls, function(url) { %> <li><a href="/<%= url %>"><%= url %></a></li> <% }); %>
-  </ul>
+    <h3>Archived Sites</h3>
+    <ul>
+    <% _.each(urls, function(url) { %> <li><a href="/<%= url %>"><%= url %></a></li> <% }); %>
+    </ul>
+  </div>
 </body>
 </html>
