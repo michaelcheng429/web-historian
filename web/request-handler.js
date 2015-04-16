@@ -26,6 +26,14 @@ var actions = {
         if(!inList) {
           archive.addUrlToList(data);
           helpers.redirect(res, '/loading.html');
+        } else {
+          archive.isURLArchived(data, function(inArchives){
+            if (!inArchives) {
+              helpers.redirect(res, '/loading.html');
+            } else {
+              helpers.serveAssets(res, data);
+            }
+          });
         }
       });
     });
