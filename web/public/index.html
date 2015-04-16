@@ -8,5 +8,9 @@
   <form method="POST">
     <input type="input" name="url"></input>
   </form>
+
+  <ul>
+  <% _.each(urls, function(url) { %> <li><%= url %></li> <% }); %>
+  </ul>
 </body>
 </html>

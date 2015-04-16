@@ -1,6 +1,7 @@
 var path = require('path');
 var fs = require('fs');
 var archive = require('../helpers/archive-helpers');
+var _ = require('underscore');
 
 exports.headers = headers = {
   "access-control-allow-origin": "*",
@@ -14,19 +15,23 @@ exports.serveAssets = function(res, asset, callback) {
   // Write some code here that helps serve up your static files!
   // (Static files are things like html (yours or archived from others...), css, or anything that doesn't change often.)
   console.log(asset);
-  fs.readFile(path.join(archive.paths.siteAssets, asset), function(err, data){
-    if(err) {
-      fs.readFile(path.join(archive.paths.archivedSites, asset), function(err, data) {
-        if(err) {
-          exports.sendResponse(res, '<h1>Not Found</h1>', 404);
-        } else {
-          exports.sendResponse(res, data);
-        }
-      });
-    } else {
-      exports.sendResponse(res, data);
-    }
-  });
+  if (asset === '/index.html') {
+    exports.renderTemplate(res);
+  } else {
+    fs.readFile(path.join(archive.paths.siteAssets, asset), function(err, data){
+      if(err) {
+        fs.readFile(path.join(archive.paths.archivedSites, asset), function(err, data) {
+          if(err) {
+            exports.sendResponse(res, '<h1>Not Found</h1>', 404);
+          } else {
+            exports.sendResponse(res, data);
+          }
+        });
+      } else {
+        exports.sendResponse(res, data);
+      }
+    });
+  }
 };
 
 exports.sendResponse = function(res, asset, statusCode){
@@ -52,6 +57,21 @@ exports.getData = function(req, callback) {
 exports.redirect = function(res, destination) {
   res.writeHead(302, {location: destination});
   res.end();
+};
+
+exports.renderTemplate = function(res) {
+  var templateContent = {};
+
+  archive.readListOfUrls(function(urlsArray) {
+    templateContent.urls = Array.prototype.slice.call(urlsArray);
+    fs.readFile(path.join(archive.paths.siteAssets, '/index.html'), function(err ,data) {
+      console.log(data.toString());
+      console.log(templateContent);
+      var tpl = _.template(data.toString());
+      var templatedHTML = tpl(templateContent);
+      exports.sendResponse(res, templatedHTML);
+    });
+  });
 };
 
 // As you progress, keep thinking about what helper functions you can put here!
