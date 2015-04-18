@@ -30,9 +30,13 @@ var actions = {
     });
   },
   POST: function(req, res) {
-    // helpers.getDataPromise(req).then(function(data) {
-    //   console.log('posted data: ', data);
-    // });
+    // helpers.getDataPromise(req).then(function(url) {
+    //   archive.isUrlInListPromise(url).then(function(inList) {
+    //     if (!inList) {
+    //       helpers.redirect(res, '/loading.html');
+    //     }
+    //   });
+    // })
     // res.end('posted data');
 
     helpers.getData(req, function(data) {

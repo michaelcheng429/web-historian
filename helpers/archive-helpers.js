@@ -62,3 +62,13 @@ exports.downloadUrls = function(url){
     });
   });
 };
+
+// Refactor to use promises
+
+exports.isUrlInListPromise = function(url){
+  var deferred = Q.defer();
+  exports.readListOfUrls(function(data) {
+    deferred.resolve(_.contains(data, url));
+  });
+  return deferred.promise;
+};

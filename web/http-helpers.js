@@ -59,21 +59,6 @@ exports.getData = function(req, callback) {
   });
 };
 
-exports.getDataPromise = function(req) {
-  var deferred = Q.defer();
-  var data = '';
-
-  req.on('data', function(chunk) {
-    data += chunk;
-  });
-
-  req.on('end', function() {
-    deferred.resolve(data);
-  });
-  return deferred.promise;
-};
-
-
 exports.redirect = function(res, destination) {
   res.writeHead(302, {location: destination});
   res.end();
@@ -93,3 +78,19 @@ exports.renderTemplate = function(res) {
 };
 
 // As you progress, keep thinking about what helper functions you can put here!
+
+// Refactor to use promises
+
+exports.getDataPromise = function(req) {
+  var deferred = Q.defer();
+  var data = '';
+
+  req.on('data', function(chunk) {
+    data += chunk;
+  });
+
+  req.on('end', function() {
+    deferred.resolve(data);
+  });
+  return deferred.promise;
+};
