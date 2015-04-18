@@ -2,6 +2,7 @@ var path = require('path');
 var fs = require('fs');
 var archive = require('../helpers/archive-helpers');
 var _ = require('underscore');
+var Q = require('q');
 
 exports.headers = headers = {
   "access-control-allow-origin": "*",
@@ -56,6 +57,20 @@ exports.getData = function(req, callback) {
   req.on('end', function() {
     callback(data);
   });
+};
+
+exports.getDataPromise = function(req) {
+  var deferred = Q.defer();
+  var data = '';
+
+  req.on('data', function(chunk) {
+    data += chunk;
+  });
+
+  req.on('end', function() {
+    deferred.resolve(data);
+  });
+  return deferred.promise;
 };
 
 

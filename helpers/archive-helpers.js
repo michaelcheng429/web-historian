@@ -3,6 +3,7 @@ var path = require('path');
 var _ = require('underscore');
 var http = require('http');
 var helpers = require('../web/http-helpers.js');
+var Q = require('q');
 
 /*
  * You will need to reuse the same paths many times over in the course of this sprint.
