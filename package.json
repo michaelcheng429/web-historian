@@ -16,5 +16,8 @@
   "scripts": {
     "test": "node ./web/basic-server.js & mocha test/test.js; RES=$?; kill %1; exit $RES",
     "start": "node ./web/basic-server.js"
+  },
+  "engines": {
+    "node": "0.12.0"
   }
 }
